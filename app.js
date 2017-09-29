@@ -23,12 +23,14 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 	var newStartDate = moment(childSnapshot.val().startDate, "DDMMYY");
 	var now = moment();
 	var months = parseInt(now.diff(newStartDate, "months"));
-	var totalBilled = parseInt(monthlyRate) * months; 
+	var totalBilled = parseInt(childSnapshot.val().monthlyRate) * months; 
+
 
 	console.log(childSnapshot.val().name);
 	console.log(childSnapshot.val().role);
 	console.log(childSnapshot.val().startDate);
 	console.log(childSnapshot.val().monthlyRate);
+	console.log(months);
 
 	//then we need to display information on the html 
 	var row = $("<tr>");
